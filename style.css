@@ -1,0 +1,115 @@
+body{
+    height:100%;
+}
+
+.sidebar{
+    position: fixed;    
+    height: 100vh;
+    width: 80px;
+    background-color: grey;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    color:white;
+}
+.navbar{
+    margin-bottom:15px;
+}
+.maintitle{
+    position:fixed;
+    margin-left: 80px;
+    background-color: rgb(40, 100, 212);
+    text-align:right;
+    color:white;
+    width:95%;
+    font-weight: 700;
+}
+.maintitle h1{
+    margin: 10px;
+    margin-right: 50px;
+    font-size : 30px;
+}
+.content{
+    position:fixed;
+    width:95%;
+    height:100vh;
+    margin-left: 90px;
+    margin-top:66px;
+}
+
+.print{
+    background:none;
+    border:none;
+    color:white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .body{
+    height: 100%;
+}
+main{
+    display:grid;
+    grid-template-rows: 2fr;
+    grid-template-columns: 50px 1fr;
+    height: 100%;
+    grid-gap: 10px;
+}
+.grid{
+    display:grid;
+    justify-content: center;
+    align-items: center;
+    height:  100%;
+    background-color: blue;
+}
+.navgrid{
+    display:grid;
+    grid-template-rows:7fr;
+    grid-template-columns: 50px;
+    height: 100%;
+    grid-gap:10px;
+
+} 
+ 
+.navi{
+    display:grid;
+    justify-content: center;
+    align-items: center;
+    height:100%;
+    background-color: grey;
+}
+
+.rowtwo{
+    display:grid;
+    grid-row: span 2;
+    grid-column: span 1;
+} */

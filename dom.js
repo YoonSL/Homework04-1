@@ -1,4 +1,4 @@
-const $ = function(seletor){
+const $ = function(selector){
     const nodeList = document.querySelectorAll(selector);
 
     const append = function(content){
@@ -25,19 +25,17 @@ const $ = function(seletor){
              nodeList[0].value = content;
          }
      }
-
-
-
-
-
-
-
-
+     const text = function(content){
+         for(let i = 0; i < nodeList.length; i++){
+             nodeList[i].textContent = content;
+         }
+     }
     const publicAPI = {
         append:append,
         onClick:click,
         html: html,
-        val: val
+        val: val,
+        text: text
     };
 
     return publicAPI;
