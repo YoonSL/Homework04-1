@@ -17,7 +17,9 @@
 
   const print = function(event){
     event.preventDefault();
+    $('#content').empty();
   for(let i = 0; i< employeeList.length; i++){
+   
     $('#content').append(`<h1>${employee.empList[i].name}</h1>`);
     $('#content').append(`<h1>#${employee.empList[i].officeNum}</h1>`);
     $('#content').append(`<h1>${employee.empList[i].phoneNum}</h1></br>`);
@@ -26,13 +28,19 @@
   const verify = function(event){
     event.preventDefault();
     $('#content').empty();
-    $('#content').append(`<input placeholder="Who would you like to verify?"/>`)
-    $('#content').append(`<button class = "innerVerify">Verify</button>`)
+    
+    $('#content').append(`<input placeholder="Who would you like to verify?"/>`),
+    $('#content').append(`<button id = "innerVerify">Verify</button>`),
     $('#content').append(`<h1 id = "verifyText">EmployeeFound</h1>`)
   }
+
+  const yesNo = function(event){
+    event.preventDefault();
+  }
+
   $('.print').onClick('click',print);
   $('.verify').onClick('click',verify);
-
+  $('#innerVerify').onClick('click',yesNo);
 
 
 
