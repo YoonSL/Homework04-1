@@ -1,77 +1,114 @@
-// let employees = {
-//   employeeList: employeeList,
-//   conmmandList: commandList
+
+  let employee = {
+    empList:employeeList,
+    comList:commandList
+  }
+
+  // const render = function(){
+  //   let htmlContent = '<h1> RegistrantList </h1>';
+  //   employee = {...employee}
+  //   employee.empList.name.forEach(e => htmlContent += `<p> ${e} </p>`);
+  //   $('#content').html(htmlContent);
+  // }
+
+  // render();
+
+
+
+  const print = function(event){
+    event.preventDefault();
+  for(let i = 0; i< employeeList.length; i++){
+    $('#content').append(`<h1>${employee.empList[i].name}</h1>`);
+    $('#content').append(`<h1>#${employee.empList[i].officeNum}</h1>`);
+    $('#content').append(`<h1>${employee.empList[i].phoneNum}</h1></br>`);
+  }
+}
+  const verify = function(event){
+    event.preventDefault();
+    $('#content').empty();
+    $('#content').append(`<input placeholder="Who would you like to verify?"/>`)
+    $('#content').append(`<button class = "innerVerify">Verify</button>`)
+    $('#content').append(`<h1 id = "verifyText">EmployeeFound</h1>`)
+  }
+  $('.print').onClick('click',print);
+  $('.verify').onClick('click',verify);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // for(let i = 0; i< employeeList.length; i++){
+  //   // const employeeName = Object.entries(employeeList[i]);
+  //   // const employeeNameKey = Object.keys(employeeList[i]);
+  //   const employeeNameValue = Object.values(employeeList[i].name);
+  //   // $('#content').append(`<h1>${employeeNameKey}</h1>`);
+  //   $('#content').append(`<h1>${employee.empList[i].name}</h1>`);
+  //   $('#content').append(`<h1>#${employee.empList[i].officeNum}</h1>`);
+  //   $('#content').append(`<h1>${employee.empList[i].phoneNum}</h1></br>`);
+  // }
+
+// const render = function() {
+//   for (let i = 0; i < employeeList.length; i++) {
+//     // employeeList[i].name, employeeList[i].officeNum, employeeList[i].phoneNum
+//   $('#content').append(`<div>${employeeList.name}</div>`);
+//   console.log(employeeList);
+  
+// }
 // }
 
-const employeeList = [
-  {
-    name: 'Jan',
-    officeNum: 1,
-    phoneNum: '222-222-2222'
-  },
-  {
-    name: 'Juan',
-    officeNum: 304,
-    phoneNum: '489-789-8789'
-  },
-  {
-    name: 'Margie',
-    officeNum: 789,
-    phoneNum: '789-789-7897'
-  },
-  {
-    name: 'Sara',
-    officeNum: 32,
-    phoneNum: '222-789-4654'
-  },
-  {
-    name: 'Tyrell',
-    officeNum: 3,
-    phoneNum: '566-621-0452'
-  },
-  {
-    name: 'Tasha',
-    officeNum: 213,
-    phoneNum: '789-766-5675'
-  },
-  {
-    name: 'Ty',
-    officeNum: 211,
-    phoneNum: '789-766-7865'
-  },
-  {
-    name: 'Sarah',
-    officeNum: 345,
-    phoneNum: '222-789-5231'
-  }
-];
-
-const render = function(whichList){
-  for(let i = 0; i < whichList.length; i++){
-    // $('.content').html(`<div>${whichList}</div>`);
-    $('.content').html(employeeList[i].name);
-    console.log(employeeList[i]);
-    console.log(i);
-  }
- 
-}
-const print = function(event){
-  event.preventDefault(); 
-  render(employeeList);
-  
-}
-$('.print').onClick('click',print);
+// render()
 
 
 
+// const render = function(whichList){
+//   for(let i = 0; i < whichList.length; i++){
+//     // $('.content').html(`<div>${whichList}</div>`);
+//     $('.content').html(employeeList[i].name);
+//     console.log(employeeList[i]);
+//     console.log(i);
+//   }
 
+// }
+// const print = function(event){
+//   event.preventDefault(); 
+//   render(employeeList);
 
-
-
-
-
-
-
+// }
+// $('.print').onClick('click',print);
 
 
 // // command section this code below will ask the user for the command
@@ -219,7 +256,7 @@ $('.print').onClick('click',print);
 //       } 
 //     }
 //     repeatBool = true;
-    
+
 //   }
 //   else if(command.toLowerCase() === 'list'){
 //     for(let i = 0; i < commandList.length; i++){
