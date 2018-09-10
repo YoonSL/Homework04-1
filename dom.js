@@ -3,7 +3,7 @@ const $ = function(selector){
 
     const append = function(content){
         for(let i=0;i<nodeList.length;i++){
-            nodeList[i].innerhtml += content;
+            nodeList[i].innerHTML += content;
         }
     }
      const click = function(action,cb){
@@ -14,7 +14,7 @@ const $ = function(selector){
 
      const html = function(content){
          for(let i = 0; i < nodeList.length; i++){
-            nodeList[i].innerhtml = content;
+            nodeList[i].innerHTML = content;
          }
      }
 
@@ -30,12 +30,18 @@ const $ = function(selector){
              nodeList[i].textContent = content;
          }
      }
+     const empty = function(){
+        for(let i = 0; i < nodeList.length; i++){
+            nodeList[i].innerHTML = '';
+        }
+     }
     const publicAPI = {
         append:append,
         onClick:click,
         html: html,
         val: val,
-        text: text
+        text: text,
+        empty: empty
     };
 
     return publicAPI;
