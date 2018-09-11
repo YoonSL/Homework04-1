@@ -1,75 +1,241 @@
 
-  let employee = {
-    empList:employeeList,
-    comList:commandList
-  }
+let employee = {
+  empList: employeeList,
+  comList: commandList
+}
 
-  // const render = function(){
-  //   let htmlContent = '<h1> RegistrantList </h1>';
-  //   employee = {...employee}
-  //   employee.empList.name.forEach(e => htmlContent += `<p> ${e} </p>`);
-  //   $('#content').html(htmlContent);
-  // }
+// const render = function(){
+//   let htmlContent = '<h1> RegistrantList </h1>';
+//   employee = {...employee}
+//   employee.empList.name.forEach(e => htmlContent += `<p> ${e} </p>`);
+//   $('#content').html(htmlContent);
+// }
 
-  // render();
+// render();
 
+//This function is called when the print button @nav bar is clicked.
+//It prints out the list of employees.
 
+const print = function (event) {
+  event.preventDefault();
+  $('#content').empty();
+  for (let i = 0; i < employeeList.length; i++) {
 
-  const print = function(event){
-    event.preventDefault();
-    $('#content').empty();
-  for(let i = 0; i< employeeList.length; i++){
-   
     $('#content').append(`<h1>${employee.empList[i].name}</h1>`);
-    $('#content').append(`<h1>#${employee.empList[i].officeNum}</h1>`);
+    $('#content').append(`<h1>${employee.empList[i].officeNum}</h1>`);
     $('#content').append(`<h1>${employee.empList[i].phoneNum}</h1></br>`);
   }
 }
-  const verify = function(event){
-    event.preventDefault();
-    $('#content').empty();
-    
-    $('#content').append(`<input id = "verifyInput" placeholder="Who would you like to verify?"/>`);
-    $('#content').append(`<button id = "innerVerify">Verify</button>`);
-    $('#content').append(`<h1 id = "verifyText">EmployeeFound</h1>`);
-    $('#content').append(`<h1 id = "trueOrFalse"></h1>`)
-    
-    
-    const yesNo = function(event){
-      event.preventDefault();
-      const verifyWord = $('#verifyInput').val();
-      const verifyWordCase = verifyWord.toLowerCase();
-      const verifyBoolean = employee.empList.some(e => e.name.toLowerCase() === verifyWordCase);
-      $('#trueOrFalse').text(verifyBoolean);
-    }
 
-    $('#innerVerify').onClick('click',yesNo); 
+//This function is called when the verify button @nav bar is clicked.
+//changes the content area to verify section.
+
+const verify = function (event) {
+  event.preventDefault();
+  $('#content').empty();
+
+  $('#content').append(`<div class = center><input id = "verifyInput" placeholder="Who would you like to verify?"/><button class = "innerButtons" id = "innerVerify">Verify</button></div>`);
+  $('#content').append(`<h1 class = "pageText" id = "verifyText"></h1>`);
+  $('#content').append(`</br><h1 id = "trueOrFalse"></h1>`)
+  $('#verifyText').text('EmployeeFound');
+
+  //This function is called when the Verify button @ content is clicked.
+  //It checks the if the employee a user is looking for exists and prints true or false.
+
+  const yesNo = function (event) {
+    event.preventDefault();
+    const verifyWord = $('#verifyInput').val();
+    const verifyWordCase = verifyWord.toLowerCase();
+    const verifyBoolean = employee.empList.some(e => e.name.toLowerCase() === verifyWordCase);
+    $('#trueOrFalse').text(verifyBoolean);
   }
 
+  $('#innerVerify').onClick('click', yesNo);
+}
+
+//This function is called when the lookup button @nav bar is clicked.
+//changes the content area to lookup section.
+
+const lookup = function (event) {
+  event.preventDefault();
+  $('#content').empty();
+  $('#content').append(`<div class = "center"><input id = "lookupInput" placeholder="Who would you like to lookup?"/><button class = "innerButtons" id = "innerLookup">Lookup</button></div>`);
+  $('#content').append(`<h1 class = "pageText" id = "lookupText">EmployeeFound</h1>`);
+  $('#content').append(`<h1 id = "lookupInfo"></h1>`)
+  $('#lookupText').text('');
+
+  //This function is called when the Lookup button @content is clicked.
+  //It checks the if the employee a user is looking for exists and shows the user information of the search.
+
+  const lookupWho = function (event) {
+    event.preventDefault();
+    const lookupWord = $('#lookupInput').val();
+    const lookupWordCase = lookupWord.toLowerCase();
+    const lookupInformation = employee.empList.filter(e => e.name.toLowerCase() === lookupWordCase);
+
+    if (lookupInformation.length == 0) {
+      $('#lookupInfo').text('No one of that name');
+    } else {
+      const lookupValue = Object.values(lookupInformation[0]);
+      $('#lookupInfo').text(lookupValue[0]);
+      $('#lookupInfo').append(`</br>${lookupValue[1]}`);
+      $('#lookupInfo').append(`</br>${lookupValue[2]}`);
+    }
+  }
+
+  $('#innerLookup').onClick('click', lookupWho);
+}
+
+//This function is called when the contains button @nav bar is clicked.
+//changes the content area to contains section.
+
+const contains = function (event) {
+  event.preventDefault();
+  $('#content').empty();
+  $('#content').append(`<div class = "center"><input id = "containsInput" placeholder="Which charaters are in the name?"/><button class = "innerButtons" id = "innerContains">Contains</button></div>`);
+  $('#content').append(`<h1 class = "pageText" id = "containsText">EmployeeFound</h1>`);
+  $('#content').append(`<h1 id = "containsInfo"></h1>`)
+  $('#containsText').text('');
+
+
+  //This function is called when the Contains button @content is clicked.
+  //It checks the if the employee a user is looking with string value exists and shows the user information of the search.
+
+  const containsWho = function (event) {
+    event.preventDefault();
+    $('#containsInfo').empty();
+    const containsWord = $('#containsInput').val();
+    const containsWordCase = containsWord.toLowerCase();
+    const containsInformation = employee.empList.filter(e => e.name.toLowerCase().includes(containsWordCase));
+
+    if (containsInformation.length == 0) {
+      $('#containsInfo').text('No one of that name');
+    } else {
+      for (let i = 0; i < containsInformation.length; i++) {
+        const containsValue = Object.values(containsInformation[i]);
+        for (let j = 0; j < containsValue.length; j++) {
+          const containsValueNum = containsValue[j];
+          $('#containsInfo').append(`${containsValueNum}</br>`);
+        }
+      }
+    }
+  }
+
+  $('#innerContains').onClick('click', containsWho);
+}
+
+//This function is called when the update button @nav bar is clicked.
+//changes the content area to update section.
+
+const update = function (event) {
+  event.preventDefault();
+  $('#content').empty();
+  $('#content').append(`<div class = "center"> <p class = "greyWord">Name</p> <input id = "updateName"/>`);
+  $('#content').append(`<div class = "center"> <p class = "greyWord">Number</p> <input id = "updateOffNum"/>`);
+  $('#content').append(`<div class = "center"> <p class = "greyWord">Phone</p> <input id = "updatePhoneNum"/>`);
+  $('#content').append(`<button id = "innerUpdate"> Update </button>`);
+  $('#content').append(`<h1 class = "pageText" id = "updateText">EmployeeFound</h1>`);
+  $('#content').append(`<h1 id = "updateInfo"></h1>`)
+  $('#updateText').text('');
+
+  //This function is called when the Update button @content is clicked.
+  //It checks the if the employee a user is looking for and takes an input of the changed information and updates it.
+
+  const updateWho = function (event) {
+    event.preventDefault();
+    $('#updateInfo').empty();
+    let updateName = $('#updateName').val();
+    let updateOff = $('#updateOffNum').val();
+    let updatePhone = $('#updatePhoneNum').val();
+
+    let updateNameCase = updateName.toLowerCase();
+
+    for (let i = 0; i < employeeList.length; i++) {
+      const containName = employee.empList[i].name;
+      const containNameCase = containName.toLowerCase();
+
+      if (updateNameCase === containNameCase) {
+        employee.empList[i].officeNum = '#' + updateOff;
+        employee.empList[i].phoneNum = updatePhone;
+
+        $('#updateInfo').text(employee.empList[i].name);
+        $('#updateInfo').append(`</br>${employee.empList[i].officeNum}`);
+        $('#updateInfo').append(`</br>${employee.empList[i].phoneNum}`);
+
+      }
+    }
+  }
+  $('#innerUpdate').onClick('click', updateWho);
+}
+
+//This function is called when the add button @nav bar is clicked.
+//changes the content area to add section.
+
+const add = function (event) {
+  event.preventDefault();
+  $('#content').empty();
+  $('#content').append(`<div class = "center"> <p class = "greyWord">Name</p> <input id = "addName"/>`);
+  $('#content').append(`<div class = "center"> <p class = "greyWord">Number</p> <input id = "addOffNum"/>`);
+  $('#content').append(`<div class = "center"> <p class = "greyWord">Phone</p> <input id = "addPhoneNum"/>`);
+  $('#content').append(`<button id = "innerAdd"> Add </button>`);
+  $('#content').append(`<h1 class = "pageText" id = "addText">EmployeeFound</h1>`);
+  $('#content').append(`<h1 id = "addInfo"></h1>`)
+  $('#addText').text('');
+
+  //This function is called when the Add button @content is clicked.
+  //It takes in new employee's information and adds it to the list.
+
+  const addWho = function (event) {
+    event.preventDefault();
+    $('#updateInfo').empty();
+    let addName = $('#addName').val();
+    let addOff = $('#addOffNum').val();
+    let addPhone = $('#addPhoneNum').val();
+
+    var newEmployee = {
+      name: addName,
+      officeNum: addOff,
+      phoneNum: addPhone
+    }
+
+    employeeList.push(newEmployee);
+
+    $('#addInfo').text(addName);
+    $('#addInfo').append(`</br>#${addOff}`);
+    $('#addInfo').append(`</br>${addPhone}`);
+  }
+  $('#innerAdd').onClick('click', addWho);
+}
+
+const deletes = function(event){
+    event.preventDefault();
+    $('#content').empty();
+    $('#content').append(`<div class = "center"><input id = "deleteInput" placeholder="Who would you like to delete?"/><button class = "innerButtons" id = "innerDelete">Delete</button></div>`);
+    $('#content').append(`<h1 class = "pageText" id = "deleteText">EmployeeFound</h1>`);
+    $('#content').append(`<h1 id = "deleteInfo"></h1>`)
+    $('#deleteText').text('');
   
-
-  $('.print').onClick('click',print);
-  $('.verify').onClick('click',verify);
- 
-
-
-
-  // else if (command.toLowerCase() === 'verify') {
-  //       const verifyName = prompt('Which employee would you like to verify?');
-  //       let trueFalse = 'false';
-  //       for (let i = 0; i < employeeList.length; i++) {
-  //         const checkName = employeeList[i].name;
-  //         if (checkName.toUpperCase() === verifyName.toUpperCase()) {
-  //           trueFalse = 'true';
-  //         }
-  //       }
-  //       render(trueFalse);
-  //       repeatBool = true;
-  //     }
-
-
-
-
+    //This function is called when the Lookup button @content is clicked.
+    //It checks the if the employee a user is looking for exists and shows the user information of the search.
+  
+    const deleteWho = function (event) {
+      event.preventDefault();
+      const deleteWord = $('#deleteInput').val();
+      const deleteWordCase = deleteWord.toLowerCase();
+  
+      for (let i = 0; i < employeeList.length; i++) {
+        const deleteName = employee.empList[i].name;
+        if (deleteName.toLowerCase() === deleteWordCase) {
+          
+          delete employeeList[i].name;
+          delete employeeList[i].officeNum;
+          delete employeeList[i].phoneNum;
+        }
+      }
+    }
+  
+    $('#innerDelete').onClick('click', deleteWho);
+  }
 
 
 
@@ -81,11 +247,28 @@
 
 
 
+//This function is called when the list button @nav bar is clicked.
+//changes the content area to list section.
+//It prints out the list of commands and what they do.
 
+const list = function (event) {
+  event.preventDefault();
+  $('#content').empty();
+  for (let i = 0; i < commandList.length; i++) {
 
+    $('#content').append(`<h1>${employee.comList[i].commands} &nbsp ${employee.comList[i].description}</h1></br>`);
 
+  }
+}
 
-
+$('.print').onClick('click', print);
+$('.verify').onClick('click', verify);
+$('.lookup').onClick('click', lookup);
+$('.contains').onClick('click', contains);
+$('.update').onClick('click', update);
+$('.add').onClick('click', add);
+$('.delete').onClick('click', deletes);
+$('.list').onClick('click', list);
 
 
 
@@ -115,7 +298,7 @@
 //     // employeeList[i].name, employeeList[i].officeNum, employeeList[i].phoneNum
 //   $('#content').append(`<div>${employeeList.name}</div>`);
 //   console.log(employeeList);
-  
+
 // }
 // }
 

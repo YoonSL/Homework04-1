@@ -1,5 +1,5 @@
 body{
-    height:100%;
+    height:200%;
 }
 
 .sidebar{
@@ -35,8 +35,10 @@ body{
     height:100%;
     margin-left: 90px;
     margin-top:66px;
+    transition: top 0.3s;
 }
 
+/* button attributes start */
 .print{
     background:none;
     border:none;
@@ -47,9 +49,44 @@ body{
     border:none;
     color:white;
 }
+.lookup{
+    background:none;
+    border:none;
+    color:white;
+}
+.contains{
+    background:none;
+    border:none;
+    color:white;
+}
+
+.update{
+    background:none;
+    border:none;
+    color:white;
+}
+
+.list{
+    background:none;
+    border:none;
+    color:white;
+}
+
+.add{
+    background:none;
+    border:none;
+    color:white;
+}
+
+.delete{
+    background:none;
+    border:none;
+    color:white;
+}
+/* button attributes end */
 
 h1{
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 700;
 }
 .innerVerify{
@@ -67,25 +104,86 @@ input{
     margin:10px;
     font-size:15px;
     text-align: center;
-    margin-left:400px;
 }
 
-#verifyText{
+.pageText{
     border-top: 2px solid  rgb(124, 124, 124);
     text-align:center;
     margin-left: 50px;
     margin-right: 50px;
-    margin-top: 20px;
-    padding-top: 20px;
+    margin-top: 30px;
+    padding-top: 30px;
     color: rgb(141, 141, 141);
 }
 
+/* content attributes start*/
+#lookupInfo{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
 
+#updateInfo{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
 
+#trueOrFalse{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
 
+#containsInfo{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
 
+#addInfo{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+/* content attributes end*/
 
+.center{
+    display:flex;
+    justify-content: center;
+    align-items:center; 
+}
 
+.greyWord{
+    font-size: 20px;
+    text-align : right;
+    color: rgba(126, 126, 126, 0.7);
+
+}
+
+.innerButtons{
+    background:none;
+    border:none;
+    color:rgba(126, 126, 126, 0.7);
+    font-size: 20px;
+}
+
+#innerUpdate{
+    position: absolute;
+    left:50%;
+    background:none;
+    border:none;
+    color:rgba(126, 126, 126, 0.7);
+    font-size: 20px;
+}
+#innerAdd{
+    position: absolute;
+    left:50%;
+    background:none;
+    border:none;
+    color:rgba(126, 126, 126, 0.7);
+    font-size: 20px;
+}
 
 
 
