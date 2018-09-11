@@ -29,22 +29,43 @@
     event.preventDefault();
     $('#content').empty();
     
-    $('#content').append(`<input placeholder="Who would you like to verify?"/>`),
-    $('#content').append(`<button id = "innerVerify">Verify</button>`),
-    $('#content').append(`<h1 id = "verifyText">EmployeeFound</h1>`)
+    $('#content').append(`<input id = "verifyInput" placeholder="Who would you like to verify?"/>`);
+    $('#content').append(`<button id = "innerVerify">Verify</button>`);
+    $('#content').append(`<h1 id = "verifyText">EmployeeFound</h1>`);
+    $('#content').append(`<h1 id = "trueOrFalse"></h1>`)
+    
+    
+    const yesNo = function(event){
+      event.preventDefault();
+      const verifyWord = $('#verifyInput').val();
+      const verifyWordCase = verifyWord.toLowerCase();
+      const verifyBoolean = employee.empList.some(e => e.name.toLowerCase() === verifyWordCase);
+      $('#trueOrFalse').text(verifyBoolean);
+    }
+
+    $('#innerVerify').onClick('click',yesNo); 
   }
 
-  const yesNo = function(event){
-    event.preventDefault();
-  }
+  
 
   $('.print').onClick('click',print);
   $('.verify').onClick('click',verify);
-  $('#innerVerify').onClick('click',yesNo);
+ 
 
 
 
-
+  // else if (command.toLowerCase() === 'verify') {
+  //       const verifyName = prompt('Which employee would you like to verify?');
+  //       let trueFalse = 'false';
+  //       for (let i = 0; i < employeeList.length; i++) {
+  //         const checkName = employeeList[i].name;
+  //         if (checkName.toUpperCase() === verifyName.toUpperCase()) {
+  //           trueFalse = 'true';
+  //         }
+  //       }
+  //       render(trueFalse);
+  //       repeatBool = true;
+  //     }
 
 
 
